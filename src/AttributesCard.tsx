@@ -6,10 +6,11 @@ const AttributesCard = ({
   attributeStateMap,
   handleDecrement,
   handleIncrement,
+  totalAttributePoints,
 }) => {
   return (
     <div>
-      Attributes:
+      Attributes: {totalAttributePoints}
       {ATTRIBUTE_LIST.map((attribute) => (
         <div>
           {attribute}:{attributeStateMap[attribute]}, Modifier:

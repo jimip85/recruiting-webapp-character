@@ -1,5 +1,4 @@
 import { Character } from "./types";
-
  
 // Save character function
 export const saveCharacter = async (character: Character): Promise<Character> => {

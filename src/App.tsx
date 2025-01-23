@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from "./consts";
 import AttributesCard from "./AttributesCard";
 import ClassesCard from "./ClassesCard";
 import SkillsCard from "./SkillsCard";
@@ -45,11 +44,21 @@ function App() {
   const [skillStateMap, setSkillStateMap] =
     useState<SkillPoints>(defaultSkills);
 
+  const computeTotalAttributePoints = () => {
+    if (!attributes) {
+      return 0;
+    }
+
+    return Object.values(attributes).reduce((acc, curr) => acc + curr, 0);
+  };
+
   const handleIncrement = (attribute: string) => {
-    setAttributes((prevState) => ({
-      ...prevState,
-      [attribute]: prevState[attribute] + 1,
-    }));
+    if (computeTotalAttributePoints() < 70) {
+      setAttributes((prevState) => ({
+        ...prevState,
+        [attribute]: prevState[attribute] + 1,
+      }));
+    }
   };
 
   const handleDecrement = (attribute: string) => {
@@ -73,6 +82,7 @@ function App() {
   const handleFetch = async () => {
     try {
       const character = await fetchCharacter();
+      console.log("Character fetched successfully:", character);
       setAttributes(character.attributes);
       setSkillStateMap(character.skillPoints);
     } catch (error) {
@@ -90,6 +100,7 @@ function App() {
           attributeStateMap={attributes}
           handleIncrement={handleIncrement}
           handleDecrement={handleDecrement}
+          totalAttributePoints={computeTotalAttributePoints()}
         />
         <ClassesCard
           attributeStateMap={attributes}

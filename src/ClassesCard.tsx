@@ -31,7 +31,7 @@ const ClassesCard = ({
 
   return (
     <div>
-      <h1>ClassesCard</h1>
+      <h1>ClassesCard:</h1>
       <div>
         {Object.keys(CLASS_LIST).map((className) => (
           <div key={className} onClick={() => handleSelectClass(className)}>

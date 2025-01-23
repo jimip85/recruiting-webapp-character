@@ -36,7 +36,7 @@ const SkillsCard = ({ attributeStateMap, skillStateMap, setSkillStateMap }) => {
     <div>
       <h1>Skills:</h1>
       <p>
-        Total Points to Spend:{totalAmountOfPointsToSpend() - pointsBalance}
+        Total Points to Spend: {totalAmountOfPointsToSpend() - pointsBalance}
       </p>
       <div>
         {SKILL_LIST.map((skill) => (
